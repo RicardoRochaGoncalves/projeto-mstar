@@ -1,0 +1,285 @@
+{% extends 'supply_chain/base/base.html' %}
+
+{% block content %}
+    <h1 class="my-4">
+        <small>Mercadorias</small>
+        <a class="btn btn-outline-info btn-md float-md-right" href="{% url 'cadastro-mercadoria' %}">+ Adicionar Mercadoria</a>
+    </h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+    {% if mercadorias %}
+        <div class="col-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Fabricante</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Relatório</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for mercadoria in mercadorias %}
+                <tr>
+                    <td>{{ mercadoria.registro }}</td>
+                    <td>{{ mercadoria.nome }}</td>
+                    <td>{{ mercadoria.fabricante }}</td>
+                    <td>{{ mercadoria.tipo }}</td>
+                    <td>{{ mercadoria.descricao }}</td>
+                    <td><a href="{% url 'relatorio-mercadoria' id=mercadoria.id %}"><button type="button" class="btn btn-outline-primary btn-sm">Relatório</button></a></td>
+                    <td><a href="{% url 'edita-mercadoria' id=mercadoria.id %}"><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></a></td>
+                    <td><a href="{% url 'delete-mercadoria' id=mercadoria.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Deletar</button></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            Não existe nenhum cadastro, clique em adicionar
+        </div>
+    </div>
+    {% endif %}
+    </div>
+
+
+
+    <h1 class="my-4">
+        <small>Entradas</small>
+        <a class="btn btn-outline-info btn-md float-md-right" href="{% url 'cadastro-entrada' %}">+ Adicionar Entrada</a>
+    </h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+    {% if entradas %}
+        <div class="col-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mercadoria</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Local</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for entrada in entradas %}
+                <tr>
+                    <td>{{ entrada.mercadoria }}</td>
+                    <td>{{ entrada.quantidade }}</td>
+                    <td>{{ entrada.data }}</td>
+                    <td>{{ entrada.local }}</td>
+                    <td><a href="{% url 'edita-entrada' id=entrada.id %}"><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></a></td>
+                    <td><a href="{% url 'delete-entrada' id=entrada.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Deletar</button></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            Não existe nenhum cadastro, clique em adicionar
+        </div>
+    </div>
+    {% endif %}
+    </div>
+
+
+
+    <h1 class="my-4">
+        <small>Saídas</small>
+        <a class="btn btn-outline-info btn-md float-md-right" href="{% url 'cadastro-saida' %}">+ Adicionar Saída</a>
+    </h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+    {% if saidas %}
+        <div class="col-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Mercadoria</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Local</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for saida in saidas %}
+                <tr>
+                    <td>{{ saida.mercadoria }}</td>
+                    <td>{{ saida.quantidade }}</td>
+                    <td>{{ saida.data }}</td>
+                    <td>{{ saida.local }}</td>
+                    <td><a href="{% url 'edita-saida' id=saida.id%}"><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></a></td>
+                    <td><a href="{% url 'delete-saida' id=saida.id%}"><button type="button" class="btn btn-outline-danger btn-sm">Deletar</button></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            Não existe nenhum cadastro, clique em adicionar
+        </div>
+    </div>
+    {% endif %}
+    </div>
+
+    
+    <h1 class="my-4">
+        <small>Locais</small>
+        <a class="btn btn-outline-info btn-md float-md-right" href="{% url 'cadastro-local' %}">+ Adicionar Local</a>
+    </h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+    {% if locais %}
+        <div class="col-12">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="col-9">Nome</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Deletar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for local in locais %}
+                <tr>
+                    <td>{{ local.nome }}</td>
+                    <td><a href="{% url 'edita-local' id=local.id %}"><button type="button" class="btn btn-outline-primary btn-sm">Editar</button></a></td>
+                    <td><a href="{% url 'delete-local' id=local.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Deletar</button></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            Não existe nenhum cadastro, clique em adicionar
+        </div>
+    </div>
+    {% endif %}
+    </div>
+
+    <h1 class="my-4">
+        <small>Analise de Dados</small>
+        <a class="btn btn-outline-info btn-md float-md-right" href="{% url 'gerar-pdf' %}">Gerar PDF</a>
+    </h1>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{datas_entradas|safe}},
+            datasets: [{
+                label: 'Relatório de entradas',
+                data: {{quantidades_entradas}},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="myChartt" width="400" height="200"></canvas>
+    <script>
+    const ctxx = document.getElementById('myChartt').getContext('2d');
+    const myChartt = new Chart(ctxx, {
+        type: 'bar',
+        data: {
+            labels: {{datas_saidas|safe}},
+            datasets: [{
+                label: 'Relatório de saídas',
+                data: {{quantidades_saidas|safe}},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    </script>
+
+{% endblock %}
